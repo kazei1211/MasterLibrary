@@ -1,0 +1,138 @@
+﻿<Page x:Class="MasterLibrary.Views.LoginWindow.CreateNewPassPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.LoginWindow"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      DataContext="{StaticResource ForgotPassVM}"
+      Name="CreateNewPassPageML"
+      d:DesignHeight="320" d:DesignWidth="410"
+      Title="ForgotPassPage">
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ThicknessAnimation Storyboard.TargetName="CreateNewPassPageML"
+                                        Storyboard.TargetProperty="Margin"
+                                        From="400,0,0,0"
+                                        To="0"
+                                        Duration="0:0:0.2" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="54*"/>
+            <ColumnDefinition Width="151*"/>
+        </Grid.ColumnDefinitions>
+        <Label Cursor="Hand"
+                   Height="30"
+                   Grid.Row="0"
+                   Width="30"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Name="lbl2"
+                  >
+            <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Height="26"
+                                         Width="26" />
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding CancelForgotPass}"
+                                               CommandParameter="{Binding ElementName=lbl2}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Label>
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
+            <Label FontFamily="junegull"
+               FontSize="15"
+               FontWeight="UltraBlack"
+               Foreground="#391c00"
+               Content="Mật khẩu mới"
+               HorizontalAlignment="Center"
+               Height="24"
+               Margin="60,20,0,0" RenderTransformOrigin="0.5,0.5" Width="256">
+                
+            </Label>
+
+            <!-- Phần khôi phục mật khẩu -->
+            <StackPanel Margin="0,20,0,10"
+                    HorizontalAlignment="Center"
+                    >
+
+                <PasswordBox x:Name="FloatingNewPassChange"
+                    materialDesign:HintAssist.Hint="Mật khẩu"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Password=""
+                    Foreground="Black"
+                    BorderBrush="LightGray"
+                    FontSize="15"
+                    Width="200"
+                    Margin="0,-10,0,0"
+                    Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Height="57">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding NewpassChanged}"
+                                               CommandParameter="{Binding ElementName=FloatingNewPassChange}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+
+                <Label FontFamily="junegull"
+                    FontSize="15"
+                    FontWeight="UltraBlack"
+                    Foreground="#391c00"
+                    Content="Xác nhận mật khẩu"
+                    HorizontalAlignment="Center"
+                    Height="24"
+                    Margin="60,10,0,-10" RenderTransformOrigin="0.5,0.5" Width="256"/>
+
+                <PasswordBox x:Name="FloatingConfirmNewPassChange"
+                    materialDesign:HintAssist.Hint="Xác nhận mật khẩu"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Password=""
+                    Foreground="Black"
+                    BorderBrush="LightGray"
+                    FontSize="15"
+                    Width="200"
+                    Margin="0,20,0,0"
+                    Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Height="52">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding ComfirmNewPassChanged}"
+                                               CommandParameter="{Binding ElementName=FloatingConfirmNewPassChange}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+            </StackPanel>
+
+            <Label
+                        x:Name="ErrorNewPass" 
+                        Foreground="Red"
+                        FontSize="14"
+                        Width="259"
+                        Margin="27, -10, 0, 0"
+                        Height="45"/>
+
+            <Button Content="Xác nhận"
+                                Width="91"
+                                x:Name="btnConfirmVeri"
+                                Padding="0,0,0,5"
+                                Background="#391c00"
+                                materialDesign:ButtonAssist.CornerRadius="8"
+                                Command="{Binding CreateNewPass}"
+                                CommandParameter="{Binding ElementName=ErrorNewPass}"
+                                Height="32"
+                                >
+                
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Page>

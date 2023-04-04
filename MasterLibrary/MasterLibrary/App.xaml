@@ -1,0 +1,147 @@
+﻿<Application x:Class="MasterLibrary.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MasterLibrary"
+             StartupUri="Views/LoginWindow/LoginWindow.xaml">
+
+    <!--StartupUri="Views/Customer/MainCustomerWindow.xaml"
+     StartupUri="Views/LoginWindow/LoginWindow.xaml"--> 
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="/ResourcesXAML/MainResources.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Haley.WPF;component/Dictionaries/haleyRD.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                             Color="#391c00" />
+
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush"
+                             Color="#391c00" />
+
+            <!-- Style của text button menu -->
+            <Style BasedOn="{StaticResource {x:Type ToggleButton}}"
+                   TargetType="{x:Type RadioButton}"
+                   x:Key="MenuButtonMain">
+                <Style.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Grid VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch"
+                                      Background="{TemplateBinding Background}">
+                                    <TextBlock Text="{TemplateBinding Property=Content}"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               TextWrapping="Wrap"
+                                               Foreground="{TemplateBinding Property=Foreground}"
+                                               Padding="1"
+                                               Margin="2"
+                                               FontSize="13" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="Foreground"
+                            Value="#E6E0CC"/>
+                    <Setter Property="Cursor"
+                            Value="Hand" />
+                    <Setter Property="Width"
+                            Value="140" />
+                    <Setter Property="Height"
+                            Value="auto" />
+                    <Setter Property="BorderBrush"
+                            Value="#5c3107" />
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </Style.Setters>
+            </Style>
+
+            <!-- Hiệu ứng click button menu -->
+            <Style TargetType="StackPanel"
+                   x:Key="EffectMenuButton">
+                <Setter Property="Background"
+                                Value="Transparent" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=Tag.IsChecked, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}"
+                                         Value="True">
+                        <Setter Property="Background"
+                                        Value="#5c3107" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
+            <!-- style box item -->
+            <Style x:Key="styleListBoxItems"
+                   TargetType="{x:Type ListBoxItem}">
+                <Setter Property="SnapsToDevicePixels"
+                        Value="False" />
+                <Setter Property="OverridesDefaultStyle"
+                        Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Border Name="Border"
+                                    Padding="5"
+                                    SnapsToDevicePixels="True">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="datagridEditButton" TargetType="Button">
+                <Setter Property="Background" Value="#512da8"/>
+                <Setter Property="BorderBrush" Value="#4a148c"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="2" Padding="12" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#7950f2"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="datagridRemoveButton" TargetType="Button" BasedOn="{StaticResource datagridEditButton}">
+                <Setter Property="Background" Value="#d32f2f"/>
+                <Setter Property="BorderBrush" Value="#b71c1c"/>
+                
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#f44336"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="CenterAlignmentCellStyle" TargetType="DataGridCell">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+            
+            <Style TargetType="{x:Type DataGridRow}" x:Key="IncompleteRowStyle">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsIncomplete}" Value="True">
+                        <Setter Property="Background" Value="#FA8072"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,369 @@
+﻿<Window x:Class="MasterLibrary.Views.Admin.BookManagePage.updatingwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterLibrary.Views.Admin.BookManagePage"
+        mc:Ignorable="d"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:uc="clr-namespace:MasterLibrary.UserControlML"
+        DataContext="{StaticResource BookManageVM}"
+        x:Name="UpdatingWindow"
+        AllowsTransparency="True"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        WindowStyle="None"
+        Title="Trang Chỉnh Sửa"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        Height="602" Width="828">
+    <Window.Clip>
+        <RectangleGeometry Rect="0, 0, 1300, 700" RadiusX="10" RadiusY="10"></RectangleGeometry>
+    </Window.Clip>
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.4*"/>
+            <RowDefinition Height="49*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:controlbar_uc Tag="{Binding Title, ElementName=UpdatingWindow}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" >
+                    <StackPanel>
+                        <TextBox
+                        x:Name="TenSach_txb"
+                        FontSize="14"
+                        materialDesign:HintAssist.Hint="Tên sách"
+                        BorderBrush="#b29e84"
+                        Text="{Binding TenSach}"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Margin="10 10 10 10"/>
+
+                        <Label  Margin="10 -10 10 0"
+                            x:Name="Error1"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red" />
+
+                        <TextBox
+                            Name="TacGia_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Tác giả"
+                            BorderBrush="#b29e84"
+                            Text="{Binding TacGia}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error2"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red" />
+
+                        <TextBox
+                            x:Name="NhaXuatBan_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Nhà xuất bản"
+                            BorderBrush="#b29e84"
+                            Text="{Binding NhaXuatBan}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error3"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                        <TextBox
+                            x:Name="NamXuatBan_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Năm xuất bản"
+                            BorderBrush="#b29e84"
+                            Text="{Binding NamXuatBan}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error4"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                        <TextBox
+                            x:Name="SoLuong_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Số lượng trong kho"
+                            BorderBrush="#b29e84"
+                            Text ="{Binding SoLuong}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error5"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                        <TextBox
+                            x:Name="Gia_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Giá"
+                            Text="{Binding Gia}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error6"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                        <TextBox
+                            x:Name="MoTa_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Mô tả"
+                            Text="{Binding MoTa}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error7"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.ColumnSpan="2" Margin="390,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" >
+                    <StackPanel>
+                        <ComboBox
+                            x:Name="TheLoai_cbb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Thể loại"
+                            Margin="10 10 10 10"
+                            Text="{Binding TheLoai}"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem>
+                                Chính trị
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Khoa học
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Kinh tế
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Văn học
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Lịch sử
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Tiểu thuyết
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Tâm lý
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Sách thiếu nhi
+                            </ComboBoxItem>
+                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding TypeChangeML}"
+                                                           CommandParameter="{Binding ElementName=TheLoai_cbb}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                        </ComboBox>
+
+                        <Label Margin="10 -10 10 0"
+                           x:Name="Error8"
+                           Height="20"
+                           FontSize="9.5"
+                           FontFamily="UVN Viet Sach"
+                           Content=""
+                           Foreground="Red"/>
+
+                        <ComboBox
+                            x:Name="Tang_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Tầng"
+                            Text="{Binding Tang}"
+                            ItemsSource="{Binding DsTang}"
+                            DisplayMemberPath="TenTang"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                            Margin="10 10 10 10"
+                            >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding FloorChangeML}"
+                                                           CommandParameter="{Binding ElementName=Tang_txb}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error9"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                        <ComboBox
+                            x:Name="Day_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Dãy"
+                            ItemsSource="{Binding DsDay}"
+                            DisplayMemberPath="TenDay"
+                            Text="{Binding Day, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                            Margin="10 10 10 10">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ShelvesChangeML}"
+                                                           CommandParameter="{Binding ElementName=Day_txb}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error10"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+                        <TextBox
+                            x:Name="Source_txb"
+                            FontSize="14"
+                            materialDesign:HintAssist.Hint="Source ảnh"
+                            Text="{Binding ImgSource}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                            Margin="10 10 10 10"/>
+
+                        <Label Margin="10 -10 10 0"
+                            x:Name="Error11"
+                            Height="20"
+                            FontSize="9.5"
+                            FontFamily="UVN Viet Sach"
+                            Content=""
+                            Foreground="Red"/>
+
+
+                        <Image Height="221"
+                           x:Name="image_img"
+                           Margin="0 0"
+                           Stretch="Fill" StretchDirection="Both" Width="251">
+                        </Image>
+
+                        <materialDesign:Badged
+                            BadgeColorZoneMode="PrimaryDark">
+                            <Button
+                                    x:Name="update_btn"
+                                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="#b29e84"
+                                    Margin="110 20 0 0"
+                                    Command="{Binding Updating}"
+                                    CommandParameter="{Binding ElementName=UpdatingWindow}">
+                                Update
+                            </Button>
+                        </materialDesign:Badged>
+                    </StackPanel>
+                    <!--<materialDesign:Card Height="100" DataContext="{Binding Source={StaticResource BookManageVM}}"
+                             Width="150"
+                             Margin="-380 -50 0 0"
+                             UniformCornerRadius="5"
+                             Background="#e8e6e6">
+                        <StackPanel>
+                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                 IsIndeterminate="True"
+                                 Value="50"
+                                 Margin="0,30,0,0"
+                                 x:Name="prg" />
+                            <Label HorizontalContentAlignment="Center"
+                                    FontSize="15"
+                                    Content="Đang tải ảnh..."
+                                    Margin="0,10,0,0"
+                                    Foreground="#743100">
+                            </Label>
+                        </StackPanel>
+                        <materialDesign:Card.Style>
+                            <Style TargetType="materialDesign:Card">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsLoading}"
+                                                 Value="true">
+                                        <Setter  Property="Visibility"
+                                                 Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:Card.Style>
+                    </materialDesign:Card>-->
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button
+                    x:Name="import_btn"
+                    Margin="0 40 0 100"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Command="{Binding ImportImageForUpdatingWindow}"
+                    CommandParameter="{Binding ElementName=UpdatingWindow}"
+                    Background="White"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="100"
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
+    

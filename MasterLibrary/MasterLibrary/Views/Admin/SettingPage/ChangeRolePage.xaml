@@ -1,0 +1,126 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.SettingPage.ChangeRolePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.SettingPage"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      d:DesignHeight="330"
+      d:DesignWidth="545"
+      DataContext="{StaticResource SettingAdminVM}"
+      Title="ChangeRolePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="21*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46*" />
+                <ColumnDefinition Width="63*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0"
+                  Margin="15 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock FontSize="20"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MaterialDesignButtonTextBlock}">
+                                   Số ngày mượn
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBlock FontSize="20"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MaterialDesignButtonTextBlock}">
+                                   Số tiền trễ / 1 ngày
+                    </TextBlock>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Margin="0 0 15 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBox Foreground="Black"
+                             FontSize="15"
+                             Height="54"
+                             Text="{Binding NewSoNgayMuon}"
+                             IsReadOnly="False"
+                             Width="auto"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="LightGray"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBox Foreground="Black"
+                             FontSize="15"
+                             Height="54"
+                             Text="{Binding NewMoneyForLate}"
+                             IsReadOnly="False"
+                             Width="auto"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="LightGray"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Button x:Name="btnBack"
+                            Command="{Binding BackRolePage}"
+                            Height="40"
+                            Width="100"
+                            ToolTip="Trở lại"
+                            HorizontalAlignment="Center"
+                            Margin="0 0 25 0"
+                            Content="Trở lại"
+                            FontSize="16"
+                            VerticalAlignment="Center"
+                            Padding="0" />
+
+                    <Button x:Name="btnSavePassword"
+                            Command="{Binding SaveChangeRole}"
+                            CommandParameter="{Binding ElementName=confirm_frame}"
+                            Height="40"
+                            Width="100"
+                            ToolTip="Lưu"
+                            HorizontalAlignment="Right"
+                            Content="Lưu"
+                            FontSize="16"
+                            VerticalAlignment="Center"
+                            Padding="0" />
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <materialDesign:Card 
+                                 UniformCornerRadius="8">
+                <Frame  x:Name="confirm_frame" />
+
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Page>

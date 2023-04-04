@@ -1,0 +1,210 @@
+﻿<Window x:Class="MasterLibrary.Views.LoginWindow.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterLibrary.Views.LoginWindow"
+        xmlns:cv ="clr-namespace:MasterLibrary.Utils.ConverterValue"
+        mc:Ignorable="d"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="RegisterWindow" Height="500" Width="350"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        DataContext="{StaticResource RegisterML}"
+        AllowsTransparency="True">
+
+    <Window.Resources>
+        <cv:BoolValueConverter x:Key="ConverterBoolValue"/>
+    </Window.Resources>
+    
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label FontFamily="junegull"
+               FontSize="35"
+               FontWeight="UltraBlack"
+               Foreground="#391c00"
+               Content="Đăng kí"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Height="50"
+               Margin="20,20,0,0">
+            </Label>
+
+            <!-- Phần đăng kí -->
+            <StackPanel Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                <materialDesign:PackIcon Kind= "BadgeAccountHorizontalOutline"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+                <TextBox materialDesign:HintAssist.Hint="Họ và tên"
+                     Foreground="Black"
+                     FontSize="15"
+                     Width="200"
+                     Margin="5,0,0,0"
+                     BorderBrush="LightGray"
+                     Text="{Binding Fullnamereg}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewTextInput" >
+                            <ei:CallMethodAction TargetObject="{Binding }" 
+                                         MethodName="ValueValidationTextBox"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </StackPanel>
+            <TextBlock Text="Vui lòng nhập họ tên"
+                           Foreground="#FFF44336"
+                           FontWeight="DemiBold"
+                           Margin="0,2,65,0"
+                           HorizontalAlignment="Right"
+                           FontSize="12"
+                           Visibility="{Binding IsNullNameReg, Converter={StaticResource ConverterBoolValue}}"/>
+            
+            <StackPanel Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Email"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+                <TextBox materialDesign:HintAssist.Hint="Email của bạn"
+                     Foreground="Black"
+                     FontSize="15"
+                     Width="200"
+                     Margin="5,0,0,0"
+                     BorderBrush="LightGray"
+                     Text="{Binding Emailreg}"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                
+            </StackPanel>
+            <TextBlock Text="Vui lòng nhập email"
+                           Foreground="#FFF44336"
+                           FontWeight="DemiBold"
+                           Margin="0,2,65,0"
+                           HorizontalAlignment="Right"
+                           FontSize="12"
+                           Visibility="{Binding IsNullEmailReg, Converter={StaticResource ConverterBoolValue}}"/>
+            
+            <StackPanel Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Account"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+                <TextBox materialDesign:HintAssist.Hint="Tên đăng nhập"
+                     Foreground="Black"
+                     FontSize="15"
+                     Width="200"
+                     Margin="5,0,0,0"
+                     BorderBrush="LightGray"
+                     Text="{Binding Usernamereg}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </StackPanel>
+            <TextBlock Text="Vui lòng nhập tên đăng nhập"
+                           Foreground="#FFF44336"
+                           FontWeight="DemiBold"
+                           Margin="0,2,65,0"
+                           HorizontalAlignment="Right"
+                           FontSize="12"
+                           Visibility="{Binding IsNullUserReg, Converter={StaticResource ConverterBoolValue}}"/>
+
+            <StackPanel HorizontalAlignment="Center"
+                        Margin="0 10 0 0"
+                    Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Lock"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+                <PasswordBox
+                    materialDesign:HintAssist.Hint="Mật khẩu"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Password=""
+                    x:Name="FloatingPasswordRegChanged"
+                    Foreground="Black"
+                    BorderBrush="LightGray"
+                    FontSize="15"
+                    Width="200"
+                    Margin="5,0,0,0"
+                    Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding PasswordRegChangedML}" 
+                                               CommandParameter="{Binding ElementName=FloatingPasswordRegChanged}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+            </StackPanel>
+            <TextBlock Text="Vui lòng nhập mật khẩu"
+                           Foreground="#FFF44336"
+                           FontWeight="DemiBold"
+                           Margin="0,2,65,0"
+                           HorizontalAlignment="Right"
+                           FontSize="12"
+                           Visibility="{Binding IsNullPasswordReg, Converter={StaticResource ConverterBoolValue}}"/>
+
+            <!-- Phần bấm nút -->
+            <StackPanel Orientation = "Vertical"
+                    HorizontalAlignment="Center"
+                        Margin="0 10 0 0">
+                <!-- Đã có tài khoản -->
+
+                <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+                    <TextBlock
+                        Text = "Bạn đã có tài khoản?"
+                        FontSize="13"
+                        VerticalAlignment="Center"
+                        Foreground="#b29e84">
+                    </TextBlock>
+                    <Button Content="Đăng nhập"
+                        Foreground="#b29e84"
+                        FontSize="12"
+                        FontStyle="Italic"
+                        FontWeight="Bold"
+                        Width="93"
+                        Padding="0,0,25,0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        HorizontalContentAlignment="Right"
+                        Click="btn_Click_Close"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Width="250">
+                    <!-- Đóng -->
+                    <StackPanel HorizontalAlignment="Left"
+                            Margin="40,0,0,0">
+                        <Button Content="Đóng"
+                                Width="90"
+                                x:Name="btnClose"
+                                Padding="0,0,0,5"
+                                Background="#391c00"
+                                materialDesign:ButtonAssist.CornerRadius="8"
+                                Click="btn_Click_Close">
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Đăng Kí -->
+                    <StackPanel HorizontalAlignment="Right"
+                            Margin="10,0,0,0">
+                        <Button Content="Đăng Kí"
+                                Width="90"
+                                x:Name="btnRegister"
+                                Padding="0,0,0,5"
+                                Background="#391c00"
+                                materialDesign:ButtonAssist.CornerRadius="8"
+                                Command="{Binding RegisterML}"
+                                >
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

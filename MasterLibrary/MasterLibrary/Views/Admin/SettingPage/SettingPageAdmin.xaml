@@ -1,0 +1,96 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.SettingPage.SettingPageAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.SettingPage"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="600"
+      d:DesignWidth="1170"
+      Name="SettingPageML"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      Title="SettingPageAdmin"
+      DataContext="{StaticResource SettingAdminVM}">
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SettingPageML"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0"
+                                     To="1"
+                                     Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+    
+    <Border BorderThickness="0"
+            CornerRadius="20">
+        <Grid Background="#ffffff">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <materialDesign:Card Margin="20,20,20,20"
+                                     Grid.Row="1"
+                                     UniformCornerRadius="8">
+                    <Frame x:Name="Infor_frame"
+                           NavigationUIVisibility="Hidden">
+                    </Frame>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding LoadedInfor}"
+                                                   CommandParameter="{Binding ElementName=Infor_frame}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </materialDesign:Card>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="139*" />
+                    <RowDefinition Height="86*" />
+                </Grid.RowDefinitions>
+                <materialDesign:Card Margin="20,20,20,20"
+                                     Grid.Row="0"
+                                     UniformCornerRadius="8">
+                    <Frame x:Name="Role_Frame"
+                           NavigationUIVisibility="Hidden">
+                    </Frame>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding LoadedFrame}"
+                                                   CommandParameter="{Binding ElementName=Role_Frame}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </materialDesign:Card>
+
+                <StackPanel Grid.Row="1"
+                            Margin="30 50">
+                    <TextBlock Grid.Row="1"
+                               Text="Sách là người bạn trung thành và yên tĩnh nhất, chúng là những nhà cố vấn dễ tiếp cận và khôn ngoan nhất, và chúng còn là những giáo viên kiên nhẫn nhất."
+                               TextWrapping="Wrap"
+                               Foreground="#a47100"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               TextAlignment="Justify"
+                               >
+
+                    </TextBlock>
+
+                    <TextBlock Text="-Charles William Eliot-"
+                               HorizontalAlignment="Right"
+                               Foreground="#a47100"
+                               FontWeight="SemiBold"
+                               FontSize="16"/>
+                </StackPanel>
+                
+                
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

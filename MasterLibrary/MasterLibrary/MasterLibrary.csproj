@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Avalonia.0.10.18\build\Avalonia.props" Condition="Exists('..\packages\Avalonia.0.10.18\build\Avalonia.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E556E575-2D74-47B3-A2B5-134EA0D34278}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MasterLibrary</RootNamespace>
+    <AssemblyName>MasterLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Avalonia, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Animation, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Animation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Base, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Controls, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.DesignerSupport, Version=0.7.0.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.DesignerSupport.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.DesktopRuntime, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.DesktopRuntime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Dialogs, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Dialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Input, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Input.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Interactivity, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Layout, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Layout.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Markup, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Markup.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Markup.Xaml, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Markup.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.MicroCom, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.MicroCom.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.OpenGL, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.OpenGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Remote.Protocol, Version=0.10.18.0, Culture=neutral, PublicKeyToken=7ecde292c616a9f3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.Remote.Protocol.0.10.18\lib\netstandard2.0\Avalonia.Remote.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Styling, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Styling.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Themes.Default, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Themes.Default.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Themes.Fluent, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Themes.Fluent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Avalonia.Visuals, Version=0.10.18.0, Culture=neutral, PublicKeyToken=c8d484a7012f9a8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalonia.0.10.18\lib\net461\Avalonia.Visuals.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CloudinaryDotNet, Version=1.20.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.20.0\lib\net452\CloudinaryDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Haley.Abstractions, Version=1.0.19.0, Culture=neutral, PublicKeyToken=9b5f4902d3fea17a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Haley.Abstractions.1.0.19\lib\netstandard2.0\Haley.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Haley.Extensions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=9b5f4902d3fea17a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Haley.Extensions.2.1.15.1\lib\netstandard2.0\Haley.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Haley.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b5f4902d3fea17a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Haley.Helpers.2.1.9\lib\netstandard2.0\Haley.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Haley.IOC, Version=2.0.2.0, Culture=neutral, PublicKeyToken=9b5f4902d3fea17a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Haley.IOC.3.0.13\lib\netstandard2.0\Haley.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="Haley.MVVM, Version=4.0.2.0, Culture=neutral, PublicKeyToken=9b5f4902d3fea17a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Haley.MVVM.6.3.0\lib\net462\Haley.MVVM.dll</HintPath>
+    </Reference>
+    <Reference Include="Haley.WPF, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9b5f4902d3fea17a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Haley.WPF.5.3.0\lib\net462\Haley.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=4242.42.42.42, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2022.3.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.1.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.1.0-ci390\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.7.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.7.0-ci390\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.3.1.17\lib\net461\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.Core.3.1.17\lib\net461\protobuf-net.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.CodeDom.6.0.0\lib\net461\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.5.0.0\lib\netstandard2.0\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.6.0.0\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.6.0.5\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="DTOs\AdminDTO.cs" />
+    <Compile Include="DTOs\BillDetailDTO.cs" />
+    <Compile Include="DTOs\BillDTO.cs" />
+    <Compile Include="DTOs\BookDTO.cs" />
+    <Compile Include="DTOs\BookInBorrowDTO.cs" />
+    <Compile Include="DTOs\BookInCartDTO.cs" />
+    <Compile Include="DTOs\CustomerDTO.cs" />
+    <Compile Include="DTOs\DayDTO.cs" />
+    <Compile Include="DTOs\InputBookDTO.cs" />
+    <Compile Include="DTOs\RoleLibraryDTO.cs" />
+    <Compile Include="DTOs\TangDTO.cs" />
+    <Compile Include="DTOs\TroubleDTO.cs" />
+    <Compile Include="Models\DataProvider\AdminServices.cs" />
+    <Compile Include="Models\DataProvider\BillDetailServices.cs" />
+    <Compile Include="Models\DataProvider\BillServices.cs" />
+    <Compile Include="Models\DataProvider\BookInBorrowServices.cs" />
+    <Compile Include="Models\DataProvider\BookInCartServices.cs" />
+    <Compile Include="Models\DataProvider\BookServices.cs" />
+    <Compile Include="Models\DataProvider\BuildingServices.cs" />
+    <Compile Include="Models\DataProvider\BuyServices.cs" />
+    <Compile Include="Models\DataProvider\CHITIET_NHAP.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\CTHD.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\CustormerServices.cs" />
+    <Compile Include="Models\DataProvider\DAYKE.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\GIOHANG.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\HOADON.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\InputBookServices.cs" />
+    <Compile Include="Models\DataProvider\KHACHHANG.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\LOAISUCO.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\LUATTHUVIEN.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\MasterlibraryModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterlibraryModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\MasterlibraryModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\MasterlibraryModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterlibraryModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\NHAPKHO.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\PHIEUMUON.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\PHIEUTHU.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\RoleLibraryServices.cs" />
+    <Compile Include="Models\DataProvider\SACH.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\StatisticServices.cs" />
+    <Compile Include="Models\DataProvider\SUCO.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\TANG.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\TRANGTHAISC.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataProvider\TroubleServices.cs" />
+    <Compile Include="Models\DataProvider\USERROLE.cs">
+      <DependentUpon>MasterlibraryModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlML\controlbar_uc.xaml.cs">
+      <DependentUpon>controlbar_uc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CloudinaryService.cs" />
+    <Compile Include="Utils\Constant.cs" />
+    <Compile Include="Utils\ConverterValue\BookInBorrowConverter.cs" />
+    <Compile Include="Utils\ConverterValue\BoolValueConverter.cs" />
+    <Compile Include="Utils\ConverterValue\ChangePasswordMultiValueConverter.cs" />
+    <Compile Include="Utils\ConverterValue\NotNullValidationConverter.cs" />
+    <Compile Include="Utils\Helper.cs" />
+    <Compile Include="Validations\NotNullValidation.cs" />
+    <Compile Include="ViewModel\AdminVM\BookManage\BookManageViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\BorrowBookVM\BorrowBookViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\BorrowBookVM\BorrowBookVorcherViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\BorrowBookVM\CollectionBookVorcherViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\HistoryVM\HistoryViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\ImportVM\ImportViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\LocationVM\BookInRowViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\LocationVM\LocationViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\MainAdminViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\ManageCustomerVM\AddOrEditCustomerViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\ManageCustomerVM\ManageCustomerViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\SettingVM\SettingViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\StatisticVM\StatisticViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\TroubleVM\DetailTroubleViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\TroubleVM\TroubleViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\BookCartVM\BookCartViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\BorrowBookCusVM\BorrowBookViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\BuyBookVM\BuyBookViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\BuyBookVM\DetailBookViewModel.cs" />
+    <Compile Include="ViewModel\ControlBarViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\MainCustomerViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\ReportTroubleVM\AddOrEditTroubleViewModel.cs" />
+    <Compile Include="Utils\ConverterValue\OperatorTroubleConverter.cs" />
+    <Compile Include="ViewModel\CustomerVM\ReportTroubleVM\ReportTroubleViewModel.cs" />
+    <Compile Include="ViewModel\CustomerVM\SettingVM\SettingViewModel.cs" />
+    <Compile Include="ViewModel\DetailBookViewModel.cs" />
+    <Compile Include="ViewModel\LoginVM\ForgotPassViewModel.cs" />
+    <Compile Include="ViewModel\LoginVM\LoginViewModel.cs" />
+    <Compile Include="Views\Admin\BookManagePage\BookManagePage1.xaml.cs">
+      <DependentUpon>BookManagePage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\BookManagePage\updatingwindow.xaml.cs">
+      <DependentUpon>updatingwindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\BorrowBookPage\BorrowBookPage.xaml.cs">
+      <DependentUpon>BorrowBookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\BorrowBookPage\BorrowBookVorcherPage.xaml.cs">
+      <DependentUpon>BorrowBookVorcherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\BorrowBookPage\CollectionBookVorcherPage.xaml.cs">
+      <DependentUpon>CollectionBookVorcherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\CustomerManagePage\AddCustomerWindow.xaml.cs">
+      <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\CustomerManagePage\CustomerManagePage.xaml.cs">
+      <DependentUpon>CustomerManagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\CustomerManagePage\EditCustomerWindow.xaml.cs">
+      <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\HistoryPage\BorrowPage.xaml.cs">
+      <DependentUpon>BorrowPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\HistoryPage\CollectPage.xaml.cs">
+      <DependentUpon>CollectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\HistoryPage\ExpensePage.xaml.cs">
+      <DependentUpon>ExpensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\HistoryPage\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\HistoryPage\TroublePage_His.xaml.cs">
+      <DependentUpon>TroublePage_His.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ImportBookPage\ImportBookPage.xaml.cs">
+      <DependentUpon>ImportBookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\LocationPage\BookInRow.xaml.cs">
+      <DependentUpon>BookInRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\LocationPage\LocationPage.xaml.cs">
+      <DependentUpon>LocationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\HistoryPage\RevenuePage.xaml.cs">
+      <DependentUpon>RevenuePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\MainAdminWindow.xaml.cs">
+      <DependentUpon>MainAdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\ChangeInforPage.xaml.cs">
+      <DependentUpon>ChangeInforPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\ChangePass.xaml.cs">
+      <DependentUpon>ChangePass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\ChangeRolePage.xaml.cs">
+      <DependentUpon>ChangeRolePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\ConfirmPage.xaml.cs">
+      <DependentUpon>ConfirmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\ConfirmPassForRole.xaml.cs">
+      <DependentUpon>ConfirmPassForRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\InformationPage.xaml.cs">
+      <DependentUpon>InformationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\RolePage.xaml.cs">
+      <DependentUpon>RolePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SettingPage\SettingPageAdmin.xaml.cs">
+      <DependentUpon>SettingPageAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\StatisticalPage\StatisticalPage.xaml.cs">
+      <DependentUpon>StatisticalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TroublePage\DetailTroubleAdmin.xaml.cs">
+      <DependentUpon>DetailTroubleAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TroublePage\ProcessTrouble.xaml.cs">
+      <DependentUpon>ProcessTrouble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TroublePage\TroublePage.xaml.cs">
+      <DependentUpon>TroublePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\BookCartPage\BookCartPage.xaml.cs">
+      <DependentUpon>BookCartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\BookLocationPage\BookLocationPage.xaml.cs">
+      <DependentUpon>BookLocationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\BorrowBookPage\BorrowBookPage.xaml.cs">
+      <DependentUpon>BorrowBookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\BuyBookPage\BuyBookPage.xaml.cs">
+      <DependentUpon>BuyBookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\BuyBookPage\DetailBookService.xaml.cs">
+      <DependentUpon>DetailBookService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\MainCustomerWindow.xaml.cs">
+      <DependentUpon>MainCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\ReportTroublePage\AddRTrouble.xaml.cs">
+      <DependentUpon>AddRTrouble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\ReportTroublePage\DetailTrouble.xaml.cs">
+      <DependentUpon>DetailTrouble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\ReportTroublePage\EditTrouble.xaml.cs">
+      <DependentUpon>EditTrouble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\ReportTroublePage\ReportTroublePage.xaml.cs">
+      <DependentUpon>ReportTroublePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\SettingPage\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailBook.xaml.cs">
+      <DependentUpon>DetailBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow\CreateNewPassPage.xaml.cs">
+      <DependentUpon>CreateNewPassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow\ForgotPassPage.xaml.cs">
+      <DependentUpon>ForgotPassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow\VerificationPage.xaml.cs">
+      <DependentUpon>VerificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageBoxML\MessageBoxML.xaml.cs">
+      <DependentUpon>MessageBoxML.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ResourcesXAML\MainResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlML\controlbar_uc.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\BookManagePage\BookManagePage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\BookManagePage\updatingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\BorrowBookPage\BorrowBookPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\BorrowBookPage\BorrowBookVorcherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\BorrowBookPage\CollectionBookVorcherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\CustomerManagePage\AddCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\CustomerManagePage\CustomerManagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\CustomerManagePage\EditCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\HistoryPage\BorrowPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\HistoryPage\CollectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\HistoryPage\ExpensePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Admin\HistoryPage\HistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\HistoryPage\TroublePage_His.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\ImportBookPage\ImportBookPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\LocationPage\BookInRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\LocationPage\LocationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\HistoryPage\RevenuePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\MainAdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\ChangeInforPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\ChangePass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\ChangeRolePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\ConfirmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\ConfirmPassForRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\InformationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\RolePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\SettingPage\SettingPageAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\StatisticalPage\StatisticalPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\TroublePage\DetailTroubleAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\TroublePage\ProcessTrouble.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\TroublePage\TroublePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\BookCartPage\BookCartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\BookLocationPage\BookLocationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\BorrowBookPage\BorrowBookPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\BuyBookPage\BuyBookPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\BuyBookPage\DetailBookService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\MainCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\ReportTroublePage\AddRTrouble.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\ReportTroublePage\DetailTrouble.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\ReportTroublePage\EditTrouble.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\ReportTroublePage\ReportTroublePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\SettingPage\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow\CreateNewPassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow\ForgotPassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow\VerificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageBoxML\MessageBoxML.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Models\DataProvider\MasterlibraryModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MasterlibraryModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\DataProvider\MasterlibraryModels.edmx.diagram">
+      <DependentUpon>MasterlibraryModels.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\BackgroundLoginWindow.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Note.txt" />
+    <Resource Include="Resources\Images\setting.png" />
+    <Resource Include="Resources\Images\LocationBackground.png" />
+    <Resource Include="Resources\Images\DeleteFileBackground.png" />
+    <Resource Include="Resources\Images\WaittingBackground.png" />
+    <Resource Include="Resources\Images\AcceptBackground.png" />
+    <Resource Include="Resources\Images\ErrorBackground.png" />
+    <Resource Include="Resources\Images\ExitBackground.png" />
+    <Resource Include="Resources\Images\logo.ico" />
+    <Resource Include="logo.ico" />
+    <Content Include="Models\DataProvider\MasterlibraryModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterlibraryModels.edmx</DependentUpon>
+      <LastGenOutput>MasterlibraryModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DataProvider\MasterlibraryModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterlibraryModels.edmx</DependentUpon>
+      <LastGenOutput>MasterlibraryModels.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\Images\image_2022-12-06_11-23-02.png" />
+    <Resource Include="Resources\Images\Invest.png" />
+    <Resource Include="Resources\Images\Income.png" />
+    <Resource Include="Resources\Images\Interest.png" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Resources\Images\Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Avalonia.0.10.18\build\Avalonia.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Avalonia.0.10.18\build\Avalonia.targets'))" />
+    <Error Condition="!Exists('..\packages\Avalonia.0.10.18\build\Avalonia.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Avalonia.0.10.18\build\Avalonia.props'))" />
+    <Error Condition="!Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.7.0-ci390\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.7.0-ci390\build\MaterialDesignThemes.targets'))" />
+  </Target>
+  <Import Project="..\packages\Avalonia.0.10.18\build\Avalonia.targets" Condition="Exists('..\packages\Avalonia.0.10.18\build\Avalonia.targets')" />
+  <Import Project="..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.7.0-ci390\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.7.0-ci390\build\MaterialDesignThemes.targets')" />
+</Project>

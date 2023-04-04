@@ -1,0 +1,2 @@
+Phương pháp mã hoá mật khẩu:
+Dùng https://www.utilities-online.info/base64 để chuyển sang base64.

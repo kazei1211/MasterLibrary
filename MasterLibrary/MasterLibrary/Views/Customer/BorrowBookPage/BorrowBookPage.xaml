@@ -1,0 +1,314 @@
+﻿<Page x:Class="MasterLibrary.Views.Customer.BorrowBookPage.BorrowBookPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.Customer.BorrowBookPage"
+      xmlns:local1="clr-namespace:MasterLibrary.Utils.ConverterValue"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1170"
+      x:Name="BorrowBookPageML"
+      Title="BorrowBookPage"
+      DataContext="{StaticResource BorrowBookCusVM}">
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="BorrowBookPageML"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0"
+                                     To="1"
+                                     Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MaskNameBorrowBoookCM}"
+                                   CommandParameter="{Binding ElementName=ShadowMask}" />
+            <i:InvokeCommandAction Command="{Binding FirstLoadBorrowBookCM}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Page.Resources>
+        <local1:ForegroundStatusBookInBorrowConverter x:Key="CoverterForeground"/>
+        <local1:TextDayBookInBorrowCoverter x:Key="CoverterTextDay"/>
+    </Page.Resources>
+    
+    <Grid>
+        <!-- Nội dung chính -->
+        <Border BorderBrush="Gray"
+                BorderThickness="1"
+                Background="#f3f5f7">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="839*"/>
+                    <ColumnDefinition Width="329*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Bên trái-->
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75*" />
+                        <RowDefinition Height="523*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Trên-->
+                    <Grid>
+                        <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                      Margin="20 20 0 0">
+                            <materialDesign:PackIcon Kind="Magnify"
+                                                                 Width="30"
+                                                                 Height="40"
+                                                                 Foreground="Black"
+                                                                 VerticalAlignment="Bottom" />
+                            <TextBox x:Name="FilterBox"
+                                                 Width="300"
+                                                 VerticalAlignment="Center"
+                                                 Height="35"
+                                                 FontSize="17"
+                                                 Foreground="Black"
+                             BorderBrush="#593000"
+                                                 Padding="0 7 0 0"
+                                                 materialDesign:HintAssist.Hint="Tìm kiếm sách"
+                                                 FontWeight="DemiBold"
+                                                 TextChanged="FilterBox_TextChanged" />
+                        </StackPanel>
+
+                        <ComboBox x:Name="OutlinedComboBoxStatusBookInBorrow"
+                                  materialDesign:HintAssist.Hint="Trạng thái sách đang mượn"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                  ItemsSource="{Binding Path=ListStatusBookInBorrow}"
+                                  VerticalAlignment="Bottom"
+                                  VerticalContentAlignment="Center"
+                                  HorizontalAlignment="Right"
+                                  HorizontalContentAlignment="Left"
+                                  Width="235"
+                                  FontSize="15"
+                                  Margin="20 10 0 0"
+                                  BorderBrush="#593000"
+                                  SelectedIndex="0"
+                                  SelectedValue="{Binding ChooseNameStatusBookInBorrow, UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding FilterBookInBorrowCM}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </Grid>
+
+                    <!--Dưới-->
+                    <Border Grid.Row="1"
+                            BorderBrush="#bfad97"
+                            BorderThickness="0.5"
+                            Margin="20,10,0,20">
+                        <ListView ItemsSource="{Binding ListBookInBorrow}"
+                                  SelectedItem="{Binding SelectedBookInBorrow}"
+                                  ToolTip="Nhấn đúp để xem chi tiết"
+                                  x:Name="lvBookBorrow"
+                                  HorizontalContentAlignment="Stretch"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding OpenDetailBookCM}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <Setter Property="Foreground"
+                                                            Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsMouseOver"
+                                                         Value="True">
+                                            <Setter Property="FocusVisualStyle"
+                                                    Value="{x:Null}"/>
+                                            <Setter Property="BorderBrush"
+                                                    Value="#d5d7d9	"/>
+                                            <Setter Property="Background"
+                                                    Value="#d5d7d9	"/>
+                                            <Setter Property="IsSelected"
+                                                            Value="True" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Sách đang thuê"
+                                                    Width="450">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Border CornerRadius="8"
+                                                            Width="100"
+                                                            Height="100">
+                                                        <Border.Background>
+                                                            <ImageBrush Stretch="Fill"
+                                                                        ImageSource="{Binding img}" />
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <StackPanel Margin="20,0,0,0">
+                                                        <TextBlock Text="{Binding TenSach}"
+                                                                   FontSize="22"
+                                                                   FontWeight="Bold" 
+                                                                   TextAlignment="Left"
+                                                                   TextWrapping="WrapWithOverflow"
+                                                                   HorizontalAlignment="Left"
+                                                                   VerticalAlignment="Top"
+                                                                   TextTrimming="CharacterEllipsis" />
+                                                        
+                                                        <StackPanel Orientation="Horizontal"
+                                                                    VerticalAlignment="Top">
+                                                            <Label Content="Mã sách:"
+                                                                   FontSize="16" />
+                                                            <Label Content="{Binding MaSach}"
+                                                                   FontSize="16" />
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal"
+                                                                    VerticalAlignment="Top">
+                                                            <Label Content="Số lượng:"
+                                                                   FontSize="16" />
+                                                            <Label Content="{Binding SoLuong}"
+                                                                   FontSize="16" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Ngày hết hạn"
+                                                    Width="170">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border BorderThickness="1"
+                                                        Margin="10,25,0,0"
+                                                        BorderBrush="{Binding NgayHetHan, Converter={StaticResource CoverterForeground}}"
+                                                        CornerRadius="20">
+                                                    <TextBlock Text="{Binding NgayHetHan, StringFormat=dd/MM/yyyy}"
+                                                               FontSize="20"
+                                                               FontStyle="Italic"
+                                                               Margin="7"
+                                                               FontWeight="Medium"
+                                                               Foreground="{Binding NgayHetHan, Converter={StaticResource CoverterForeground}}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    
+                                    <GridViewColumn Header="Ngày còn lại"
+                                                    Width="170">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding NgayHetHan, Converter={StaticResource CoverterTextDay}}"
+                                                               FontSize="20"
+                                                               FontStyle="Italic"
+                                                               Margin="7"
+                                                               FontWeight="Medium"
+                                                               Foreground="{Binding NgayHetHan, Converter={StaticResource CoverterForeground}}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+                </Grid>
+
+                <!--Bên phải-->
+                <Border BorderBrush="#bfad97"
+                        Margin="0 85 0 0"
+                        VerticalAlignment="Top"
+                        Grid.Column="1"
+                        BorderThickness="2"
+                        Height="170"
+                        Width="280">
+                    <StackPanel>
+                        <TextBlock Text="Sách đang mượn"
+                                   Foreground="#593000"
+                                   FontWeight="Bold"
+                                   FontSize="26"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 10 0 0"/>
+
+                        <Rectangle Margin="0,10,0,0"
+                            Fill="#593000" 
+                            Width="240" 
+                            Height="3" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                        Margin="10,15">
+                            <TextBlock Text="Sách đang mượn: "
+                                       Foreground="#593000"
+                                       FontSize="17"
+                                       FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding QuantityBookBorrow}"
+                                       Foreground="#FF333333"
+                                       FontSize="17"
+                                       FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="10,0">
+                            <TextBlock Text="Sách quá hạn: "
+                                       Foreground="#593000"
+                                       FontSize="17"
+                                       FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding QuantityOverdueBook}"
+                                       Foreground="#ba1111"
+                                       FontSize="17"
+                                       FontWeight="Bold"/>
+                        </StackPanel>
+
+
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Mặt nạ làm mờ -->
+        <Grid Background="Gray"
+              Opacity="0.3"
+              Visibility="Collapsed"
+              x:Name="ShadowMask"
+              Height="630"
+              Width="1170"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+        </Grid>
+
+        <!--Hiện load khi chưa load xong trang-->
+        <ProgressBar Height="100"
+                     Width="100"
+                     IsIndeterminate="{Binding IsLoading}">
+            <ProgressBar.Style>
+                <Style TargetType="ProgressBar"
+                       BasedOn="{StaticResource MaterialDesignCircularProgressBar}">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                    <Style.Triggers>
+                        <Trigger Property="IsIndeterminate"
+                                 Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ProgressBar.Style>
+        </ProgressBar>
+    </Grid>
+</Page>

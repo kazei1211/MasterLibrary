@@ -1,0 +1,242 @@
+﻿<Window x:Class="MasterLibrary.Views.Admin.TroublePage.ProcessTrouble"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterLibrary.Views.Admin.TroublePage"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="ProcessTrouble" Height="700" Width="520"
+        Name="ProcessTroubleWindow"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        DataContext="{StaticResource TroubleVM}">
+    <Border BorderThickness="0.5"
+            BorderBrush="Black"
+            CornerRadius="15"
+            Background="white">
+        <Grid Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="87*"/>
+                    <RowDefinition Height="270*"/>
+                    <RowDefinition Height="322*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Label Cursor="Hand"
+                           Height="35"
+                           Grid.Row="0"
+                           Width="35"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Height="30"
+                                         Width="30" />
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <i:InvokeCommandAction Command="{Binding CloseProcessTrouble}"
+                                                       CommandParameter="{Binding ElementName=ProcessTroubleWindow}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Label>
+
+                    <TextBlock Text="{Binding TitleTrouble}"
+                               MaxHeight="100"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="#593000"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextTrimming="CharacterEllipsis"
+                               Margin="0,10,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                        Margin="10,10,10,10"
+                        CornerRadius="8"
+                        BorderThickness="1"
+                        BorderBrush="Black">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding imgSourse}" />
+                        </Border.Background>
+                    </Border>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                Margin="15,10,10,10">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Trạng thái:"
+                                   Foreground="#593000"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"/>
+
+                            <ComboBox x:Name="OutlinedComboBoxStatusTroubleInProcessTrouble"
+                                      ItemsSource="{Binding ListStatusTroubleUpdate}"
+                                      Text="{Binding NameStatusTrouble, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectionChanged="OutlinedComboBoxStatusTroubleInProcessTrouble_SelectionChanged"
+                                      DisplayMemberPath="TenTrangThaiSuCo"
+                                      SelectedValuePath="TenTrangThaiSuCo"
+                                      VerticalAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      HorizontalAlignment="Right"
+                                      HorizontalContentAlignment="Left"
+                                      FontSize="16"
+                                      Width="125"
+                                      Margin="5,0,10,0"
+                                      BorderBrush="#593000"
+                                      Foreground="#593000"
+                                      FontWeight="SemiBold"
+                                      materialDesign:HintAssist.HintOpacity="1"
+                                      SelectedIndex="0"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Vertical"
+                                        MaxHeight="55">
+                            <Label Content="Người báo cáo:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <Label Content="{Binding NameCustomer}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"
+                                       Margin="15,0,0,0"/>
+                        </StackPanel>
+
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Label Content="Ngày báo cáo:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <Label Content="{Binding DayReportTrouble}"
+                                   ContentStringFormat="{}{0:dd/MM/yyyy}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Label Content="Loại:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <Label Content="{Binding NameTypeTrouble}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Label Content="Chi phí:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <TextBox Width="145"
+                                     x:Name="costval"
+                                     FontSize="16"
+                                     Foreground="#593000"
+                                     FontWeight="SemiBold"
+                                     HorizontalAlignment="Left"
+                                     PreviewTextInput="costval_PreviewTextInput"
+                                     TextChanged="costval_TextChanged"
+                                     IsEnabled="False"
+                                     Text="{Binding Cost, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                
+                <StackPanel  Grid.Row="2">
+                    <Label Content="Mô tả"
+                           FontSize="20"
+                           Foreground="#593000"
+                           Margin="10,10,0,0"
+                           FontWeight="DemiBold"
+                           Padding="6"/>
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Width="460"
+                             Height="200"
+                             FontSize="22"
+                             BorderBrush="#593000"
+                             Margin="-5,15,0,0"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Disabled"
+                             IsReadOnly="True"
+                             Text="{Binding DescribeTrouble}"/>
+                    <Button Grid.Row="1"
+                            Width="100"
+                            Height="40"
+                            HorizontalAlignment="Right"
+                            Content="Xác nhận"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            Margin="0,15,18,0"
+                            Command="{Binding UpdateTroubleCommand}"
+                            CommandParameter="{Binding ElementName=ProcessTroubleWindow}">
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.RowSpan="3"
+                  Background="LightGray"
+                  Opacity="0.3">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSaving}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+            
+            <!--Hiện lên đang xử lí--> 
+            <materialDesign:Card Height="100"
+                                 Width="100"
+                                 Grid.RowSpan="3"
+                                 UniformCornerRadius="5">
+                <StackPanel>
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                 IsIndeterminate="True"
+                                 Margin="0,30,0,0"
+                                 x:Name="prg" />
+                    <Label HorizontalContentAlignment="Center"
+                           FontSize="15"
+                           Content="Đang xử lý..."
+                           Margin="0,10,0,0">
+                    </Label>
+                </StackPanel>
+                <materialDesign:Card.Style>
+                    <Style TargetType="materialDesign:Card">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSaving}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </materialDesign:Card.Style>
+            </materialDesign:Card>
+        </Grid>
+    </Border>
+</Window>

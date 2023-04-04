@@ -1,0 +1,147 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.HistoryPage.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.HistoryPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1170"
+      Title="HistoryPage"
+      x:Name="HistoryPageML"
+      xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+      DataContext="{StaticResource HistoryVM}">
+    
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="HistoryPageML"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0"
+                                     To="1"
+                                     Duration="0:0:0.5" />
+
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MaskNameML}"
+                                   CommandParameter="{Binding ElementName=ShadowMask}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Background="#f0f2f5">
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             VerticalAlignment="Top"
+                             Height="50"
+                             IsChecked="True"
+                             Margin="20 30 0 0"
+                             Content="Nhập sách"
+                             Command="{Binding LoadExpensePage}"
+                             CommandParameter="{Binding ElementName=MainListViewFrame}"/>
+                
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             VerticalAlignment="Top"
+                             Height="50"
+                             IsChecked="False"
+                             Margin="10 30 0 0"
+                             Content="Bán sách"
+                             Command="{Binding LoadRevenuePage}"
+                             CommandParameter="{Binding ElementName=MainListViewFrame}"/>
+
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             VerticalAlignment="Top"
+                             Height="50"
+                             IsChecked="False"
+                             Margin="10 30 0 0"
+                             Content="Mượn sách"
+                             Command="{Binding LoadBorrowPage}"
+                             CommandParameter="{Binding ElementName=MainListViewFrame}"/>
+
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             VerticalAlignment="Top"
+                             Height="50"
+                             IsChecked="False"
+                             Margin="10 30 0 0"
+                             Content="Thu sách"
+                             Command="{Binding LoadCollectPage}"
+                             CommandParameter="{Binding ElementName=MainListViewFrame}"/>
+
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             VerticalAlignment="Top"
+                             Height="50"
+                             IsChecked="False"
+                             Margin="20 30 0 0"
+                             Content="Sự cố"
+                             Command="{Binding LoadTroublePage}"
+                             CommandParameter="{Binding ElementName=MainListViewFrame}"/>
+            </StackPanel>
+
+            <materialDesign:Card Background="White"
+                                 Margin="20,80,20,20"
+                                 UniformCornerRadius="5">
+                <Grid>
+                    <Frame x:Name="MainListViewFrame">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadExpensePage}"
+                                                       CommandParameter="{Binding ElementName=MainListViewFrame}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Frame>
+
+                    <!--IsIndeterminate: thanh tiến trình không xác định-->
+                    <!--Tạo hiệu ứng load-->
+                    <ProgressBar Value="0"
+                                 IsIndeterminate="{Binding IsGettingSource}"
+                                 Width="100"
+                                 x:Name="load"
+                                 Height="100">
+                        <ProgressBar.Style>
+                            <Style TargetType="ProgressBar"
+                                   BasedOn="{StaticResource MaterialDesignCircularProgressBar}">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=load,Path=IsIndeterminate}"
+                                                 Value="True">
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ProgressBar.Style>
+                    </ProgressBar>
+
+
+                </Grid>
+
+            </materialDesign:Card>
+        </Grid>
+        
+        
+        
+        <Grid Background="Gray"
+              Opacity="0.3"
+              Visibility="Collapsed"
+              x:Name="ShadowMask" />
+    </Grid>
+</Page>

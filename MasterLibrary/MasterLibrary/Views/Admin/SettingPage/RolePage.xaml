@@ -1,0 +1,112 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.SettingPage.RolePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.SettingPage"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="330"
+      d:DesignWidth="545"
+      DataContext="{StaticResource SettingAdminVM}"
+      Title="RolePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="139*" />
+            <RowDefinition Height="65*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock FontSize="30"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource MaterialDesignButtonTextBlock}">
+                           Quy định thư viện
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="1"
+              Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46*" />
+                <ColumnDefinition Width="63*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0"
+                  Margin="15,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="20"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Grid.Row="0"
+                           Style="{StaticResource MaterialDesignButtonTextBlock}">
+                                   Số ngày mượn
+                </TextBlock>
+
+                <TextBlock FontSize="20"
+                           Grid.Row="1"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource MaterialDesignButtonTextBlock}">
+                                   Số tiền trễ / 1 ngày
+                </TextBlock>
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Margin="0 0 15 0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBox Foreground="Black"
+                             FontSize="15"
+                             Height="54"
+                             Text="{Binding SoNgayMuon}"
+                             IsReadOnly="True"
+                             Width="auto"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="LightGray"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBox Foreground="Black"
+                             FontSize="15"
+                             Height="54"
+                             Text="{Binding MoneyForLate}"
+                             IsReadOnly="True"
+                             Width="auto"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="LightGray"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             VerticalAlignment="Center" />
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                    Width="150"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 15 0"
+                    Name="btnupdate"
+                    Command="{Binding LoadChangeRole}"
+                    CommandParameter="{Binding ElementName=btnupdate}"
+                    ToolTip="Chỉnh sửa quy định thư viện">
+                Chỉnh sửa
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

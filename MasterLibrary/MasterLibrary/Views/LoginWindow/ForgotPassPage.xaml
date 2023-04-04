@@ -1,0 +1,128 @@
+﻿<Page x:Class="MasterLibrary.Views.LoginWindow.ForgotPassPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.LoginWindow"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      DataContext="{StaticResource ForgotPassVM}"
+      Name="ForgotPassPageML"
+      d:DesignHeight="320" d:DesignWidth="410"
+      Title="ForgotPassPage">
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ThicknessAnimation Storyboard.TargetName="ForgotPassPageML"
+                                        Storyboard.TargetProperty="Margin"
+                                        From="400,0,0,0"
+                                        To="0"
+                                        Duration="0:0:0.2" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+    
+    <Grid>
+        <Label Cursor="Hand"
+                   Height="30"
+                   Grid.Row="0"
+                   Width="30"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   x:Name="lbl">
+            <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Height="26"
+                                         Width="26" />
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding CancelForgotPass}"
+                                               CommandParameter="{Binding ElementName=lbl}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Label>
+        <StackPanel Orientation="Vertical">
+            <Label FontFamily="junegull"
+               FontSize="35"
+               FontWeight="UltraBlack"
+               Foreground="#391c00"
+               Content="Khôi phục mật khẩu"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Height="50"
+               Margin="20,30,0,0">
+            </Label>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text = "Mã xác nhận sẽ được gửi vào email của bạn"
+                        TextWrapping="Wrap"
+                        Foreground="#b29e84"
+                        FontSize="12"
+                        Width="236"
+                        Margin="27, 0, 0, 0" Height="34"/>
+
+            </StackPanel>
+
+            <!-- Phần khôi phục mật khẩu -->
+            <StackPanel Margin="0,20,0,10"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Account"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+                <TextBox materialDesign:HintAssist.Hint="Email của bạn"
+                     Foreground="Black"
+                     FontSize="15"
+                     Width="241"
+                     Margin="5,0,0,0"
+                     BorderBrush="LightGray"
+                     Text="{Binding Mail}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            </StackPanel>
+            
+
+
+            <!-- Phần bấm nút -->
+            <StackPanel Orientation = "Vertical"
+                    HorizontalAlignment="Center"
+                    Margin="-8" Height="107">
+                <!--Thông báo lỗi-->
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Vertical">
+                    <Label
+                        x:Name="ErrorRestore" 
+                        Foreground="Red"
+                        FontSize="14"
+                        Width="241"
+                        Margin="27, -0, 0, 0"
+                        Height="45"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Margin="0,5,0,0"
+                    Width="95">
+
+                    <!-- Xác nhận -->
+                    <StackPanel HorizontalAlignment="Right">
+                        <Button Content="Xác nhận"
+                                Width="90"
+                                x:Name="btnConfirm"
+                                Padding="0,0,0,5"
+                                Background="#391c00"
+                                materialDesign:ButtonAssist.CornerRadius="8"
+                                Command="{Binding TypingYourEmail}"
+                                CommandParameter="{Binding ElementName=ErrorRestore}"
+                                
+                                Click="btnConfirm_Click" Height="32">
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

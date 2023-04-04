@@ -1,0 +1,231 @@
+﻿<Window x:Class="MasterLibrary.Views.Admin.HistoryPage.RevenueDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterLibrary.Views.Admin.HistoryPage"
+        mc:Ignorable="d"
+        Title="RevenueDetail" Height="520" Width="450"
+        x:Name="RevenueDetailML"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="#00000000"
+        WindowStyle="None"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+      DataContext="{StaticResource HistoryVM}"
+        MouseLeftButtonDown="RevenueDetailML_MouseLeftButtonDown">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="RevenueDetailML"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0"
+                                     To="1"
+                                     Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Border Background="#FFE5E5E5"
+            BorderBrush="Gray"
+            BorderThickness="1"
+            CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26*"></RowDefinition>
+                <RowDefinition Height="196*"></RowDefinition>
+                <RowDefinition Height="37*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Grid Grid.Row="0">
+                <Label Content="MASTER LIBRARY"
+                       FontSize="25"
+                       FontWeight="Bold"
+                       BorderThickness="0 0 0 1"
+                       BorderBrush="Black"
+                       Padding="20 20 0 0"
+                       HorizontalContentAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Grid.Row="0">
+                    <Button Command="{Binding closeML}"
+                            CommandParameter="{Binding ElementName=RevenueDetailML}"
+                            ToolBar.OverflowMode="AsNeeded"
+                            Background="Transparent"
+                            Foreground="Black"
+                            BorderBrush="Transparent"
+                            MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"
+                            materialDesign:ButtonAssist.CornerRadius="0,10,0,0">
+                        <materialDesign:PackIcon Kind="WindowClose"
+                                                 Padding="0" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Border BorderBrush="Gray"
+                        BorderThickness="0 0 1 0">
+                    <Grid Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="69*"></RowDefinition>
+                            <RowDefinition Height="180*"></RowDefinition>
+                            <RowDefinition Height="116*"></RowDefinition>
+                            <RowDefinition Height="9*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Margin="10 0 10 0"
+                            BorderThickness="0 0 0 1"
+                            BorderBrush="Gray">
+                            <Label Content="Hoá đơn mua sách" FontSize="25"
+                               FontWeight="Bold" Padding="10 10 0 0" VerticalAlignment="Center" Height="48">
+                            </Label>
+                        </Border>
+
+                        <Border
+                                BorderThickness="0 0 0 1"
+                                BorderBrush="Gray"
+                                Margin="10,0,10,2" Grid.Row="1">
+                            <StackPanel Margin="0,0,0,-1">
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Mã đơn hàng"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="idBill"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Tên sách"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="bookName"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Ngày mua hàng"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="affordDay"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*"></ColumnDefinition>
+                                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Giá sách"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="bookPrice"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*"></ColumnDefinition>
+                                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Số lượng mua"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="quantityBuy"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="2"
+                                BorderThickness="0 0 0 1"
+                                BorderBrush="Gray" Margin="10,0,10,0">
+                            <StackPanel Margin="0,0,0,-1">
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*"></ColumnDefinition>
+                                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Mã khách hàng"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="cusID"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*"></ColumnDefinition>
+                                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Tên khách hàng"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="cusName"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Grid Margin="0 7 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*"></ColumnDefinition>
+                                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="Địa chỉ"
+                                           FontSize="15"></Label>
+                                        <Label Grid.Column="1" x:Name="cusAdd"
+                                           FontSize="15" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <StackPanel Grid.Row="1" Margin="10,383,10,0" Grid.RowSpan="2">
+                <Grid Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Tổng trị giá đơn hàng" FontSize="15"></Label>
+                    <Label Grid.Column="1" FontSize="15" x:Name="costBook" HorizontalAlignment="Right"></Label>
+                </Grid>
+
+                <Grid Margin="0 5 0 0">
+                    <Label Grid.Column="0" Content="Hẹn gặp lại quý khách " FontSize="15" HorizontalAlignment="Center"></Label>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,471 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.LocationPage.LocationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.LocationPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1170"
+      Name="LocationPageML"
+      Title="LocationPage"
+      DataContext="{StaticResource LocationVM}">
+    
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="LocationPageML"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0"
+                                     To="1"
+                                     Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MaskNameLocation}"
+                                   CommandParameter="{Binding ElementName=ShadowMask}" />
+            <i:InvokeCommandAction Command="{Binding FirstLoadLocationPage}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/LocationBackground.png" Stretch="Uniform"/>
+        </Grid.Background>
+
+        <!-- Phần chính -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="319*"/>
+                <ColumnDefinition Width="509*"/>
+                <ColumnDefinition Width="342*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Ở trái-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="131*"/>
+                    <RowDefinition Height="169*"/>
+                </Grid.RowDefinitions>
+                
+                <!--Nút tầng dãy-->
+                <StackPanel Grid.Row="0"
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top"
+                            Margin="12 10 0 0">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,10">
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                x:Name="btnFloor"
+                                ToolTip="Tầng"
+                                Height="60"
+                                Width="65"
+                                Margin="0 0 35 0"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Command="{Binding OpenFloorOrRow}"
+                                CommandParameter="{Binding ElementName=btnFloor}"
+                                Background="#f9b126 "
+                                BorderBrush="White">
+                            <materialDesign:PackIcon Kind="OfficeBuilding" 
+                                             Width="35" 
+                                             Height="35"
+                                             Foreground="#391c00"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                x:Name="btnRow"
+                                ToolTip="Dãy"
+                                Height="60"
+                                Width="65"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Command="{Binding OpenFloorOrRow}"
+                                CommandParameter="{Binding ElementName=btnRow}"
+                                Background="#df933d"
+                                BorderBrush="White">
+                            <materialDesign:PackIcon Kind="Table" 
+                                                     Width="35" 
+                                                     Height="35"
+                                                     Foreground="#391c00"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                    
+                    <!--#region Xử lí tầng -->
+                    
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding VisibilityFloor}">
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                x:Name="btnAddFloor"
+                                ToolTip="Thêm tầng"
+                                Height="60"
+                                Width="65"
+                                Margin="0 0 35 0"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Command="{Binding AddOrDeleteCommand}"
+                                CommandParameter="{Binding ElementName=btnAddFloor}"
+                                Background="#c9e265"
+                                BorderBrush="White">
+                            <materialDesign:PackIcon Kind="OfficeBuildingPlus" 
+                                             Width="35" 
+                                             Height="35"
+                                             Foreground="#391c00"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                x:Name="btnDeleteFloor"
+                                ToolTip="Xoá Tầng"
+                                Height="60"
+                                Width="65"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Command="{Binding AddOrDeleteCommand}"
+                                CommandParameter="{Binding ElementName=btnDeleteFloor}"
+                                Background="#FF5757"
+                                BorderBrush="White">
+                            <materialDesign:PackIcon Kind="OfficeBuildingMinus" 
+                                                     Width="35" 
+                                                     Height="35"
+                                                     Foreground="#391c00"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                    
+                    <!--Hiện ra nút để thêm tầng-->
+                    <StackPanel Margin="0 10 0 0" Visibility="{Binding AddVisibilityFloor}"
+                                Orientation="Horizontal">
+                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 AcceptsReturn="True"
+                                 materialDesign:HintAssist.Hint="Tên tầng"
+                                 Width="110"
+                                 Margin="0 0 5 0"
+                                 BorderBrush="#c9e265"
+                                 Text="{Binding NewBuildingName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                ToolTip="Xác nhận"
+                                Height="50"
+                                Width="50"
+                                Padding="0"
+                                VerticalAlignment="Bottom"
+                                Command="{Binding AddBuildingCommand}"
+                                Background="#c9e265"
+                                BorderBrush="#c9e265">
+                            <materialDesign:PackIcon Kind="CheckBold" 
+                                                 Width="30" 
+                                                 Height="30"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+
+                    <!--Hiện ra nút để xoá tầng-->
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Visibility="{Binding DeleteVisibilityFloor}">
+                        <ComboBox x:Name="OutlinedComboBoxFloor"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:HintAssist.Hint="Tên tầng"
+                              ItemsSource="{Binding ListTang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding SelectedBuildingName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="TenTang"
+                              SelectedValuePath="TenTang"
+                              Width="110"
+                              Margin="0 0 5 0"
+                              BorderBrush="#FF5757"
+                              SelectedIndex="0"/>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                            ToolTip="Xác nhận"
+                            Height="50"
+                            Width="50"
+                            Padding="0"
+                            VerticalAlignment="Bottom"
+                            Command="{Binding DeleteBuildingCommand}"
+                            Background="#FF5757"
+                            BorderBrush="#FF5757">
+                            <materialDesign:PackIcon Kind="CheckBold" 
+                                             Width="30" 
+                                             Height="30"
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <!--#region Xử lí dãy -->
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding VisibilityRow}">
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                x:Name="btnAddRow"
+                                ToolTip="Thêm dãy"
+                                Height="60"
+                                Width="65"
+                                Margin="0 0 35 0"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Command="{Binding AddOrDeleteCommand}"
+                                CommandParameter="{Binding ElementName=btnAddRow}"
+                                Background="#c9e265"
+                                BorderBrush="White">
+                            <materialDesign:PackIcon Kind="TablePlus" 
+                                             Width="35" 
+                                             Height="35"
+                                             Foreground="#391c00"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                x:Name="btnDeleteRow"
+                                ToolTip="Xoá dãy"
+                                Height="60"
+                                Width="65"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Command="{Binding AddOrDeleteCommand}"
+                                CommandParameter="{Binding ElementName=btnDeleteRow}"
+                                Background="#FF5757"
+                                BorderBrush="White">
+                            <materialDesign:PackIcon Kind="TableMinus" 
+                                                     Width="35" 
+                                                     Height="35"
+                                                     Foreground="#391c00"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+
+                    <!--Hiện ra nút để thêm dãy-->
+                    <StackPanel Margin="0 10 0 0"
+                                Visibility="{Binding AddVisibilityRow}"
+                                Orientation="Horizontal">
+                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 AcceptsReturn="True"
+                                 materialDesign:HintAssist.Hint="Tên dãy"
+                                 Width="110"
+                                 Margin="0 0 5 0"
+                                 BorderBrush="#c9e265"
+                                 Text="{Binding NewBuildingName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                ToolTip="Xác nhận"
+                                Height="50"
+                                Width="50"
+                                Padding="0"
+                                VerticalAlignment="Bottom"
+                                Command="{Binding AddBuildingCommand}"
+                                Background="#c9e265"
+                                BorderBrush="#c9e265">
+                            <materialDesign:PackIcon Kind="CheckBold" 
+                                                 Width="30" 
+                                                 Height="30"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"/>
+                        </Button>
+
+                    </StackPanel>
+
+                    <!--Hiện ra nút để xoá dãy-->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 10 0 0"
+                                Visibility="{Binding DeleteVisibilityRow}">
+                        <ComboBox x:Name="OutlinedComboBoxRow"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:HintAssist.Hint="Tên dãy"
+                              ItemsSource="{Binding ListDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding SelectedBuildingName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="TenDay"
+                              SelectedValuePath="TenDay"
+                              Width="110"
+                              Margin="0 0 5 0"
+                              BorderBrush="#FF5757"
+                              SelectedIndex="0"/>
+                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                ToolTip="Xác nhận"
+                                Height="50"
+                                Width="50"
+                                Padding="0"
+                                VerticalAlignment="Bottom"
+                                Command="{Binding DeleteBuildingCommand}"
+                                Background="#FF5757"
+                                BorderBrush="#FF5757">
+                            <materialDesign:PackIcon Kind="CheckBold" 
+                                             Width="30" 
+                                             Height="30"
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                    <!--#endregion-->
+
+                </StackPanel>
+                
+                <!--Chuyển tầng-->
+
+                <StackPanel Grid.Row="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="40,0,0,0">
+                    <Button Width="70"
+                            Height="100"
+                            ToolTip="Lên tầng"
+                            x:Name="btnUpFloor"
+                            IsEnabled="{Binding CanMoveUp}"
+                            Command="{Binding ChangeFloorCommand}"
+                            CommandParameter="{Binding ElementName=btnUpFloor}"
+                            Background="#df933d">
+                        <materialDesign:PackIcon Kind="ArrowUp"
+                                                 Width="50" 
+                                                 Height="100"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"
+                                                 Foreground="Yellow"/>
+                    </Button>
+                    
+                    <Button Width="70"
+                            Height="100"
+                            ToolTip="Xuống tầng"
+                            x:Name="btnDownFloor"
+                            IsEnabled="{Binding CanMoveDown}"
+                            Command="{Binding ChangeFloorCommand}"
+                            CommandParameter="{Binding ElementName=btnDownFloor}"
+                            Background="#df933d">
+                        <materialDesign:PackIcon Kind="ArrowDown"
+                                                 Width="50" 
+                                                 Height="100"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"
+                                                 Foreground="Yellow"/>
+                    </Button>
+                    
+                </StackPanel>
+            </Grid>
+
+            <!--Ở giữa-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="19*"/>
+                    <RowDefinition Height="131*"/>
+                </Grid.RowDefinitions>
+                
+                <!--Phần trên hiện tầng hiện tại-->
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <TextBlock Text="TẦNG " 
+                           Foreground="#743100"
+                           FontSize="30"
+                           FontWeight="Bold"/>
+                        <TextBlock x:Name="txtCurrent" 
+                           Foreground="#743100"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Text="{Binding CurrenFloorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"/>
+                    </StackPanel>
+                </Grid>
+                
+                <!-- Ở dưới phần dãy -->
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding ListDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         SelectedItem="{Binding SelectedDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Background="#743100"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                         ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                         HorizontalAlignment="Left"
+                         x:Name="lvDay">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Height="480"
+                                        Orientation="Horizontal"
+                                        Background="#df933d"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="50"
+                                        Cursor="Hand"
+                                        Margin="5">
+                                <TextBlock Text="Dãy "
+                                           VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="#743100"
+                                           Margin="5,0,0,0"/>
+                                <TextBlock Text="{Binding TenDay}"
+                                           VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="#743100"/>
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=lvDay, Path=DataContext.LoadBookInRow}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+
+        <!-- Mặt nạ làm mờ -->
+        <Grid Background="Gray"
+              Opacity="0.3"
+              Visibility="Collapsed"
+              x:Name="ShadowMask"
+              Height="630"
+              Width="1170"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+        </Grid>
+
+        <!--Hiện load khi chưa load xong trang-->
+        <ProgressBar Height="100"
+                     Width="100"
+                     IsIndeterminate="{Binding IsLoading}">
+            <ProgressBar.Style>
+                <Style TargetType="ProgressBar"
+                       BasedOn="{StaticResource MaterialDesignCircularProgressBar}">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                    <Style.Triggers>
+                        <Trigger Property="IsIndeterminate"
+                                 Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ProgressBar.Style>
+        </ProgressBar>
+    </Grid>
+</Page>

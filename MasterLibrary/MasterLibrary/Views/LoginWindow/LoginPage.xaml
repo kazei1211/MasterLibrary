@@ -1,0 +1,144 @@
+﻿<Page x:Class="MasterLibrary.Views.LoginWindow.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.LoginWindow"
+      xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Name="LoginPageML"
+      Title="LoginPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      DataContext="{StaticResource LoginVM}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ThicknessAnimation Storyboard.TargetName="LoginPageML"
+                                        Storyboard.TargetProperty="Margin"
+                                        From="400,0,0,0"
+                                        To="0"
+                                        Duration="0:0:0.2" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+
+    <StackPanel Orientation="Vertical">
+        <Label FontFamily="junegull"
+               FontSize="35"
+               FontWeight="UltraBlack"
+               Foreground="#391c00"
+               Content="Đăng nhập"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Height="50"
+               Margin="20,30,0,0">
+        </Label>
+
+        <!-- Phần đăng nhập -->
+        <StackPanel Margin="0,20,0,10"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Account"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+            <TextBox x:Name="usernameTxb"
+                materialDesign:HintAssist.Hint="Tên đăng nhập"
+                     Foreground="Black"
+                     FontSize="15"
+                     Width="200"
+                     Margin="5,0,0,0"
+                     BorderBrush="LightGray"
+                     Text="{Binding Usernamelog}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Lock"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center" />
+            <PasswordBox x:Name="FloatingPasswordBox"
+                    materialDesign:HintAssist.Hint="Mật khẩu"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Password=""
+                    Foreground="Black"
+                    BorderBrush="LightGray"
+                    FontSize="15"
+                    Width="200"
+                    Margin="5,0,0,0"
+                    Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PasswordChanged">
+                        <i:InvokeCommandAction Command="{Binding PasswordChangedML}"
+                                               CommandParameter="{Binding ElementName=FloatingPasswordBox}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </PasswordBox>
+        </StackPanel>
+
+        <!-- Phần bấm nút -->
+        <StackPanel Orientation = "Vertical"
+                    HorizontalAlignment="Center">
+            <!-- Thông báo lỗi -->
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="30,2,25,0"
+                       x:Name="Error"
+                       Height="28"
+                       FontSize="15"
+                       Foreground="Red" />
+            </StackPanel>
+            
+            <!-- Quên mật khẩu -->
+            <StackPanel HorizontalAlignment="Right">
+                <Button Content="Quên mật khẩu?"
+                        Foreground="#b29e84"
+                        FontSize="12"
+                        FontWeight="Normal"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        HorizontalContentAlignment="Right"
+                        Command="{Binding LoadForgotPassPage}" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Width="250">
+                <!-- Đăng kí -->
+                <StackPanel HorizontalAlignment="Left"
+                            Margin="40,0,0,0">
+                    <Button Content="Đăng kí"
+                                Width="90"
+                                x:Name="btnRegister"
+                                Padding="0,0,0,5"
+                                Background="#391c00"
+                                materialDesign:ButtonAssist.CornerRadius="8"
+                                Command="{Binding LoadRegister}"
+                                >
+                    </Button>
+                </StackPanel>
+
+                <!-- Đăng nhập -->
+                <StackPanel HorizontalAlignment="Right"
+                            Margin="10,0,0,0">
+                    <Button Content="Đăng nhập"
+                                IsDefault="True"
+                                Width="90"
+                                x:Name="btnLogin"
+                                Padding="0,0,0,5"
+                                Background="#391c00"
+                                materialDesign:ButtonAssist.CornerRadius="8"
+                                Command="{Binding LoginML}"
+                                CommandParameter="{Binding ElementName=Error}"    
+                                Click="btnLogin_Click">
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

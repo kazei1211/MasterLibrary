@@ -1,0 +1,129 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.BookManagePage.BookManagePage1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.BookManagePage"
+      mc:Ignorable="d" 
+      xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource BookManageVM}"
+      Title="BookManagePage1">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone
+                Mode="PrimaryMid"
+                Padding="16 16 16 16"
+                Background="White">
+            <DockPanel>
+                <StackPanel
+                            Orientation="Horizontal"
+                             materialDesign:RippleAssist.IsCentered="True">
+                    <ToggleButton
+                            Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+
+                    <!--Khung tìm kiếm sách theo từ khóa-->
+                    <materialDesign:ColorZone
+                            Width="991"
+                            Mode="Standard"
+                            Padding="8 0 8 4" 
+                            CornerRadius="2"
+                            Panel.ZIndex="1"
+                            Margin="16 0 0 0"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                         Width="Auto" />
+                                <ColumnDefinition
+                                         Width="*" />
+                                <ColumnDefinition
+                                         Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                    Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+                                        Margin="0 4"
+                                        Kind="Magnify"
+                                        Opacity=".56" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Button>
+                            <TextBox
+                                    TextChanged="TextBox_TextChanged_Find"
+                                    Grid.Column="1"
+                                    Name="txbFilter"
+                                    Margin="8,7,0,0"
+                                    materialDesign:HintAssist.Hint="Tìm kiếm sách"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderThickness="0"
+                                    MinWidth="200"
+                                    VerticalAlignment="Center" Height="32" />
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+
+        <DataGrid ItemContainerStyle="{StaticResource IncompleteRowStyle}"
+                Grid.Row="1" 
+                x:Name="dtg_manage" 
+                ItemsSource="{Binding Listbookmanage}" 
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                IsReadOnly="True"
+                >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã" FontSize="14" Binding="{Binding MaSach}"/>
+                <DataGridTextColumn Header="Sách" FontSize="14" Binding="{Binding TenSach}" Width="180"/>
+                <DataGridTextColumn Header="Tác giả" FontSize="14" Binding="{Binding TacGia}"  Width="150"/>
+                <DataGridTextColumn Header="Nhà xuất bản" FontSize="14" Binding="{Binding NXB}"  Width="200"/>
+                <DataGridTextColumn Header="Giá" FontSize="14" Binding="{Binding Gia}"/>
+                <DataGridTextColumn Header="Thể loại" FontSize="14" Binding="{Binding TheLoai}"/>
+                <DataGridTextColumn Header="Năm xuất bản" FontSize="14" Binding="{Binding NamXB}"/>
+                <DataGridTextColumn Header="SL" FontSize="14" Binding="{Binding SoLuong}"/>
+                <DataGridTextColumn Header="Tầng" FontSize="14" Binding="{Binding TenTang}"/>
+                <DataGridTextColumn Header="Dãy" FontSize="14" Binding="{Binding TenDay}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Background="#512da8"  BorderBrush="#4a148c" Foreground="#ffffff"
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    HorizontalAlignment="Left"
+                                                    Width="35" Height="35"
+                                                    Command="{Binding DataContext.UpdatingBook,RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding ElementName=dtg_manage}"
+                                                    ToolTip="MaterialDesignFloatingActionMiniButton">
+                                    <materialDesign:PackIcon Kind="EditOutline" Width="15" Height="15"/>
+                                </Button>
+
+                                <Button Background="#d32f2f"  BorderBrush="#b71c1c" Foreground="#ffffff"
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    HorizontalAlignment="Left"
+                                                    Width="35" Height="35"
+                                                    Command="{Binding DataContext.DeletingBook ,RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding ElementName=dtg_manage}"
+                                                    ToolTip="MaterialDesignFloatingActionMiniButton" Margin="5 0 0 0">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Width="15" Height="15"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadManageBookData}"
+                                       CommandParameter="{Binding ElementName=dtg_manage}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        
+    </Grid>
+</Page>

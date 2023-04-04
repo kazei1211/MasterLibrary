@@ -1,0 +1,243 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.BookManagePage"
+      xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="MasterLibrary.Views.Admin.BookManagePage.BookManagePage"
+      mc:Ignorable="d" 
+      xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+      d:DesignHeight="630" d:DesignWidth="1170"
+      Title="BookManagePage"
+      DataContext="{StaticResource BookManageVM}">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:ColorZone
+                Mode="PrimaryMid"
+                Padding="16 16 16 16"
+                Background="White">
+            <DockPanel>
+                <StackPanel
+                            Orientation="Horizontal"
+                             materialDesign:RippleAssist.IsCentered="True">
+                    <ToggleButton
+                            Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+
+                    <!--Khung tìm kiếm sách theo từ khóa-->
+                    <materialDesign:ColorZone
+                            Width="991"
+                            Mode="Standard"
+                            Padding="8 0 8 4" 
+                            CornerRadius="2"
+                            Panel.ZIndex="1"
+                            Margin="16 0 0 0"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                         Width="Auto" />
+                                <ColumnDefinition
+                                         Width="*" />
+                                <ColumnDefinition
+                                         Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                    Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+                                        Margin="0 4"
+                                        Kind="Magnify"
+                                        Opacity=".56" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Button>
+                            <TextBox
+                                    TextChanged="TextBox_TextChanged_Find"
+                                    Grid.Column="1"
+                                    Name="txbFilter"
+                                    Margin="8,7,0,0"
+                                    materialDesign:HintAssist.Hint="Typing something"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderThickness="0"
+                                    MinWidth="200"
+                                    VerticalAlignment="Center" Height="32" />
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+
+        <!--Nơi đổ dữ liệu của sách từ db vào-->
+        <ListView Grid.Row="1"
+                FontSize="14"
+                x:Name="listview_managebook" 
+                ItemsSource="{Binding Listbookmanage}" 
+                SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                materialDesign:ScrollViewerAssist.SupportHorizontalScroll="True"
+                materialDesign:ColorZoneAssist.Background="#E8E8E8" Margin="5"
+                >
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem 
+                            x:Name="Deleting"
+                            Header="Xóa sách" 
+                            IsEnabled="True"
+                            FontSize="12" 
+                            Command="{Binding DeletingBook}" 
+                            CommandParameter="{Binding ElementName=Deleting}"/>
+                    <MenuItem 
+                            x:Name="Updating"
+                            Header="Chỉnh sửa" 
+                            IsEnabled="True"
+                            FontSize="12"
+                            Command="{Binding UpdatingBook}"
+                            CommandParameter="{Binding ElementName=Updating}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn
+                                DisplayMemberBinding="{Binding MaSach}" 
+                                 Width="auto">
+                        <GridViewColumnHeader 
+                                FontSize="16"
+                                Margin="-18" 
+                                Content="Mã" 
+                                />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding TenSach}" 
+                                Width="auto">
+                        <GridViewColumnHeader
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Tên sách" 
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding TacGia}" 
+                                Width="auto">
+                        <GridViewColumnHeader
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Tác giả"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding NXB}" 
+                                Width="auto">
+                        <GridViewColumnHeader 
+                                    FontSize="16"
+                                    Margin="-18"
+                                    Content="Nhà xuất bản" Width="179"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding Gia}" 
+                                Width="100">
+                        <GridViewColumnHeader 
+                                    Margin="-18" 
+                                    Content="Giá"
+                                    FontSize="16"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding TheLoai}" 
+                                Width="auto">
+                        <GridViewColumnHeader 
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Thể loại"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding NamXB}" 
+                                Width="auto">
+                        <GridViewColumnHeader 
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Năm xuất bản"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding SoLuong}" 
+                                Width="auto">
+                        <GridViewColumnHeader 
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Số lượng trong kho"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding TenDay}" 
+                                Width="auto">
+                        <GridViewColumnHeader
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Dãy"
+                                    />
+                    </GridViewColumn>
+
+                    <GridViewColumn 
+                                DisplayMemberBinding="{Binding TenTang}" 
+                                Width="auto">
+                        <GridViewColumnHeader
+                                    FontSize="16"
+                                    Margin="-18" 
+                                    Content="Tầng"
+                                    />
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="2">
+
+
+            <!--<StackPanel Orientation="Horizontal">
+                --><!--Nút thêm sách mới--><!--
+                <materialDesign:Badged
+                            BadgeColorZoneMode="PrimaryDark">
+                    <Button  Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                 Height="41"
+                                 x:Name="Adding"
+                                 MinHeight="41"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Background="#b29e84" 
+                                 Width="90"
+                                 MinWidth="90"
+                                 Command="{Binding AddingBook}"
+                                 CommandParameter="{Binding ElementName=Adding}"
+                                 Margin="550,10,0,10">
+                        Thêm
+                    </Button>
+                </materialDesign:Badged>
+
+            </StackPanel>-->
+
+            <!--Trigger event loaded để load dữ liệu vào listview-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding LoadManageBookData}"
+                                           CommandParameter="{Binding ElementName=listview_managebook}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

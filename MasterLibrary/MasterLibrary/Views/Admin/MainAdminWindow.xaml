@@ -1,0 +1,378 @@
+﻿<Window x:Class="MasterLibrary.Views.Admin.MainAdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterLibrary.Views.Admin"
+        xmlns:uc="clr-namespace:MasterLibrary.UserControlML"
+        mc:Ignorable="d"
+        Title="Quản trị viên" 
+        Name="MainAdminWD"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="none"
+        AllowsTransparency="True"
+        DataContext="{StaticResource AdminVM}"
+        Height="700" Width="1300" >
+
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadML}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
+
+    <Window.Clip>
+        <RectangleGeometry Rect="0, 0, 1300, 700" RadiusX="10" RadiusY="10"></RectangleGeometry>
+    </Window.Clip>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Control bar-->
+        <Grid Grid.Row="0">
+            <uc:controlbar_uc Tag="{Binding Title, ElementName=MainAdminWD}"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Bên trái -->
+            <Grid Grid.Column="0"
+                      Background="#391c00">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="9*" />
+                </Grid.RowDefinitions>
+                <!-- Logo -->
+                <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                Grid.ColumnSpan="2"
+                                Height="40">
+                    <Image Source="/Resources/Images/Logo.png"
+                               Width="30"
+                               Margin="8,-5,5,0" />
+                    <TextBlock TextWrapping="Wrap"
+                                   materialDesign:TextBlockAssist.AutoToolTip="True"
+                                   VerticalAlignment="Bottom"
+                                   TextAlignment="Center"
+                                   Text="MASTER LABRARY"
+                                   FontFamily="Lora"
+                                   FontWeight= "DemiBold"
+                                   Foreground="#ffde59"
+                                   FontSize="16"
+                                   Width="70" />
+                </StackPanel>
+
+                <!-- Các chức năng -->
+
+                <StackPanel Grid.Row="1">
+
+                    <!-- Button thống kê -->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnStatistical}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="Finance"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             GroupName="mainOptions"
+                                             Content="Thống kê"
+                                             FontWeight="Bold"
+                                             x:Name="btnStatistical"
+                                             Width="auto"
+                                             IsChecked="True"
+                                             Command="{Binding LoadStatisticalPageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button quản lý khách hàng-->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnManageCustomer}"
+                                    Orientation="Horizontal"
+                                    Height="60"
+                                    Width="130"
+                                    Style="{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="AccountMultiple"
+                                                     Width="35"
+                                                     Height="32"
+                                                     VerticalAlignment="Center"
+                                                     Cursor="Hand"
+                                                     Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                         GroupName="mainOptions"
+                                         FontWeight="Bold"
+                                         x:Name="btnManageCustomer"
+                                         Width="95"
+                                         Command="{Binding LoadCustomerManagePageML}"
+                                         CommandParameter="{Binding ElementName=mainFrame}">
+                                Quản lý khách hàng
+                            </RadioButton>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button quản lí sách-->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=managetest}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="Book"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             GroupName="mainOptions"
+                                             Content="Quản lý sách"
+                                             FontWeight="Bold"
+                                             x:Name="managetest"
+                                             Width="auto"
+                                             Command="{Binding LoadBookManagePageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button nhập sách -->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnImportBook}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="Import"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             GroupName="mainOptions"
+                                             Content="Nhập sách"
+                                             FontWeight="Bold"
+                                             x:Name="btnImportBook"
+                                             Width="auto"
+                                             Command="{Binding LoadImportBookPageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button lịch sử -->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnHistory}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="SwapVerticalBold"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             Content="Lịch sử"
+                                             FontWeight="Bold"
+                                             GroupName="mainOptions"
+                                             x:Name="btnHistory"
+                                             Width="94"
+                                             Command="{Binding LoadHistoryPageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button tầng dãy -->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnLocation}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="OfficeBuildingMarker"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             Content= "Tầng dãy"
+                                             FontWeight="Bold"
+                                             GroupName="mainOptions"
+                                             x:Name="btnLocation"
+                                             Width="110"
+                                             Command="{Binding LoadLocationPageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button thuê sách -->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnBorrowBook}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="BookAccount"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             Content= "Mượn sách"
+                                             FontWeight="Bold"
+                                             GroupName="mainOptions"
+                                             x:Name="btnBorrowBook"
+                                             Width="110"
+                                             Command="{Binding LoadBorrowBookPageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button sự cố -->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnTrouble}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="WaterBoilerAlert"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             Content= "Sự cố"
+                                             FontWeight="Bold"
+                                             GroupName="mainOptions"
+                                             x:Name="btnTrouble"
+                                             Width="110"
+                                             Command="{Binding LoadTroublePageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Button cai dat-->
+                    <Border CornerRadius="5">
+                        <StackPanel Tag="{Binding ElementName=btnsetting}"
+                                        Orientation="Horizontal"
+                                        Height="60"
+                                        Width="130"
+                                        Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="Settings"
+                                                         Width="35"
+                                                         Height="32"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="Hand"
+                                                         Foreground="White" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                             Content= "Cài đặt"
+                                             FontWeight="Bold"
+                                             GroupName="mainOptions"
+                                             x:Name="btnsetting"
+                                             Width="110"
+                                             Command="{Binding LoadSettingPageML}"
+                                             CommandParameter="{Binding ElementName=mainFrame}" />
+                            
+                            
+                        </StackPanel>
+                    </Border>
+
+                    <!--Button đăng xuất-->
+                    <Border CornerRadius="25"
+                            Margin="0 5 0 0"
+                             Cursor="Hand"
+                             Background="#9b3409">
+                        <StackPanel Orientation="Horizontal"
+                                    Height="60"
+                                    
+                                    Width="130"
+                                    Style= "{StaticResource EffectMenuButton}">
+                            <materialDesign:PackIcon Kind="LogoutVariant"
+                                                     Width="35"
+                                                     Height="32"
+                                                     VerticalAlignment="Center"
+                                                     Margin="10,0,0,0"
+                                                     Foreground="#f9b126" />
+                            <RadioButton Style="{StaticResource MenuButtonMain}"
+                                         Content="Đăng xuất"
+                                         FontWeight="Bold"
+                                         x:Name="btnSignout"
+                                         Width="auto"
+                                         Command="{Binding SignOutML}"
+                                         CommandParameter="{Binding ElementName=MainAdminWD}"/>
+                        </StackPanel>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding SignOutML}"
+                                                       CommandParameter="{Binding ElementName=MainAdminWD}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- Bên phải -->
+            <Grid Grid.Column="1">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="9*" />
+                </Grid.RowDefinitions>
+
+                <!-- Thanh trên -->
+                <Grid Grid.Row="0"
+                      Background="#b29e84">
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Text="Quản lý thư viện"
+                               FontSize="45"
+                               Foreground="ghostwhite"/>
+                    
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               Margin="0 0 8 0"
+                               TextAlignment="Center"
+                               Text="{Binding CurrentTime}"
+                               FontSize="45"
+                               Foreground="ghostwhite"/>
+                </Grid>
+
+                <!-- Phần nội dung frame -->
+                <Frame x:Name="mainFrame"
+                       NavigationUIVisibility="Hidden" Grid.Row="1">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding LoadStatisticalPageML}"
+                                                       CommandParameter="{Binding ElementName=mainFrame}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Frame>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

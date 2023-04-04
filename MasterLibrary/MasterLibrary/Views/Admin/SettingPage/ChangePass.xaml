@@ -1,0 +1,145 @@
+﻿<Page x:Class="MasterLibrary.Views.Admin.SettingPage.ChangePass"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterLibrary.Views.Admin.SettingPage"
+      mc:Ignorable="d" 
+      xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+      xmlns:cv="clr-namespace:MasterLibrary.Utils.ConverterValue"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      DataContext="{StaticResource SettingAdminVM}"
+      Title="ChangePass">
+
+    <Page.Resources>
+        <cv:NotNullValidationConverter x:Key="ConverterNotNullValue"/>
+        <cv:ChangePasswordMultiValueConverter x:Key="ConverterChangePasswordMultiValue"/>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <PasswordBox x:Name="FloatingCurrentPassword"
+                                materialDesign:HintAssist.Hint="Mật khẩu hiện tại"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                Password=""
+                                Foreground="Black"
+                                BorderBrush="LightGray"
+                                FontSize="14"
+                                Width="350"
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PasswordChanged">
+                        <i:InvokeCommandAction Command="{Binding CurrentPasswordChange}"
+                                                       CommandParameter="{Binding ElementName=FloatingCurrentPassword}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </PasswordBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <PasswordBox x:Name="FloatingNewPassword"
+                                materialDesign:HintAssist.Hint="Mật khẩu mới"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                Password=""
+                                Foreground="Black"
+                                BorderBrush="LightGray"
+                                FontSize="14"
+                                Width="350"
+                                VerticalAlignment="Center" 
+                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PasswordChanged">
+                        <i:InvokeCommandAction Command="{Binding NewPasswordChange}"
+                                                       CommandParameter="{Binding ElementName=FloatingNewPassword}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </PasswordBox>
+        </Grid>
+
+
+        <Grid Grid.Row="2">
+            <PasswordBox x:Name="FloatingConfirmNewPassword"
+                                materialDesign:HintAssist.Hint="Xác nhận mật khẩu mới"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                Password=""
+                                Foreground="Black"
+                                BorderBrush="LightGray"
+                                FontSize="14"
+                                Width="350"
+                                VerticalAlignment="Center" 
+                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PasswordChanged">
+                        <i:InvokeCommandAction Command="{Binding ConfirmNewPasswordChange}"
+                                                       CommandParameter="{Binding ElementName=FloatingConfirmNewPassword}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </PasswordBox>
+            
+            
+            
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <TextBlock Text="Vui lòng xác nhận mật khẩu"
+                           Foreground="#FFF44336"
+                           FontWeight="DemiBold"
+                           Margin="170 -100 0 0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="14">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource ConverterChangePasswordMultiValue}">
+                        <Binding Path="CurrentPassword" />
+                        <Binding Path="NewPassword" />
+                        <Binding Path="ConfirmNewPassword" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
+
+            <Button
+                    x:Name="btnBack"
+                    Command="{Binding BackChangePass}"
+                    Height="40" 
+                    Width="100"
+                    materialDesign:ButtonAssist.CornerRadius="2"
+                    ToolTip="Trở lại" 
+                    HorizontalAlignment="Center"
+                    Content="Trở lại" 
+                    FontSize="16" 
+                    Margin="-250 0 0 0"
+                    VerticalAlignment="Center"
+                    Padding="0" />
+            
+            <Button
+                    x:Name="btnSavePassword"
+                    Command="{Binding SaveNewPasswordCommand}"
+                    Height="40" 
+                    Width="100"
+                    materialDesign:ButtonAssist.CornerRadius="2"
+                    ToolTip="Lưu mật khẩu" 
+                    HorizontalAlignment="Center"
+                    FocusVisualStyle="{x:Null}"
+                    Content="Lưu" 
+                Margin="250 0 0 0"
+                    FontSize="16" 
+                    VerticalAlignment="Center"
+                    Padding="0" />
+
+        </Grid>
+
+    </Grid>
+</Page>

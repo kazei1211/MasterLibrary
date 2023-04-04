@@ -1,0 +1,148 @@
+﻿<Window x:Class="MasterLibrary.Views.Customer.ReportTroublePage.DetailTrouble"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterLibrary.Views.Customer.ReportTroublePage"
+        mc:Ignorable="d"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="DetailTrouble" Height="650" Width="520"
+        Name="DetailTroubleWindow"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        DataContext="{StaticResource ReportTroubleVM}">
+
+    <Border BorderThickness="0.5"
+            BorderBrush="Black"
+            CornerRadius="15"
+            Background="white">
+        <Grid Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="53*"/>
+                    <RowDefinition Height="138*"/>
+                    <RowDefinition Height="159*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Label Cursor="Hand"
+                           Height="35"
+                           Grid.Row="0"
+                           Width="35"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Height="30"
+                                         Width="30" />
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <i:InvokeCommandAction Command="{Binding CloseDetailTrouble}"
+                                                       CommandParameter="{Binding ElementName=DetailTroubleWindow}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Label>
+
+                    <TextBlock Text="{Binding CurrentTrouble.TieuDe}"
+                               MaxHeight="100"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="#593000"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextTrimming="CharacterEllipsis"
+                               Margin="0,10,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                        Margin="10"
+                        CornerRadius="8"
+                        BorderThickness="1"
+                        BorderBrush="Black">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding CurrentTrouble.Img}" />
+                        </Border.Background>
+                    </Border>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                Margin="15,10">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Trạng thái:"
+                                   Foreground="#593000"
+                                   FontSize="16"/>
+                            <Label Content="{Binding CurrentTrouble.TenTrangThaiSuCo}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Label Content="Ngày báo cáo:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <Label Content="{Binding CurrentTrouble.NgayBaoCao}"
+                                   ContentStringFormat="{}{0:dd/MM/yyyy}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Label Content="Loại:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <Label Content="{Binding CurrentTrouble.TenLoaiSuCo}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Label Content="Chi phí:"
+                                   FontSize="16"
+                                   Foreground="#593000"/>
+                            <Label Content="{Binding CostStr}"
+                                   FontSize="16"
+                                   Foreground="#593000"
+                                   FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Row="2">
+                    <Label Content="Mô tả"
+                           FontSize="20"
+                           Foreground="#593000"
+                           Margin="10,10,0,0"
+                           FontWeight="DemiBold"
+                           Padding="6"/>
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Width="460"
+                             Height="200"
+                             FontSize="22"
+                             BorderBrush="#593000"
+                             Margin="-5,15,0,0"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Disabled"
+                             IsReadOnly="True"
+                             Text="{Binding CurrentTrouble.MoTa}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

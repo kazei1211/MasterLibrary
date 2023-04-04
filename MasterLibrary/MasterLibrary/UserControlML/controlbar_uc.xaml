@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="MasterLibrary.UserControlML.controlbar_uc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MasterLibrary.UserControlML"
+             xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             x:Name="controlbarUC"
+             Tag="Title"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="Transparent"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+    <!--Xử lý drag move window-->
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=controlbarUC}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <materialDesign:ColorZone x:Name="backGroum"        
+                                Background="White"
+                                Padding="2"
+                                Margin="0 2 0 0"
+                                CornerRadius="10 10 0 0" >
+            <Grid>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <TextBlock  VerticalAlignment="Center" Margin="20 0 10 0"
+                                    Text="{Binding Tag, ElementName=controlbarUC}" />
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Background="Transparent">
+                        <!--Button close-->
+                        <Button
+                            Command="{Binding closeWindowCommand}"
+                            CommandParameter="{Binding ElementName=controlbarUC}"
+                            Width="20" Height="20" Background="#FFE17365" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            ToolTip="Close" Margin="7 0 7 0">
+                        </Button>
+                        <!--Button maximize-->
+                        <!--<Button 
+                            Command="{Binding maximizeWindowCommand}"
+                            CommandParameter="{Binding ElementName=controlbarUC}"
+                            x:Name="btnMaximize"
+                            Width="20" Height="20" Background="#FFFFCA32" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            ToolTip="Maximize" Margin="7 0 7 0">
+                        </Button>-->
+                        <!--Button minimize-->
+                        <Button 
+                            Command="{Binding minimizeWindowCommand}"
+                            CommandParameter="{Binding ElementName=controlbarUC}"
+                            Width="20" Height="20" Background="#FF2BD655" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                            ToolTip="Minimize" Margin="7 0 7 0">
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>
